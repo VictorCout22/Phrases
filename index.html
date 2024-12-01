@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases Motivacionais</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo do corpo da página com fundo #212121 */
+        body {
+            font-family: 'Roboto', sans-serif; /* Mudança de fonte para Roboto */
+            background-color: #212121; /* Fundo cinza escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            flex-direction: column;
+            color: white; /* Cor das fontes em branco para contraste */
+            cursor: pointer;
+        }
+        
+/* Estilo do rodapé */
+.footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: white;
+}
+
+.footer a {
+    font-weight: 700;
+    color: #a002f5;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #5a0288; /* Altere a cor ao passar o mouse sobre o link */
+}
+
+        /* Estilo do título "Phrase of the day" */
+        .title {
+            font-size: 50px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 1.5s ease-out forwards, fadeOut 1.5s 1.5s forwards;
+        }
+
+        /* Estilo do subtítulo "everyday a new phrase" */
+        .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 1.5s ease-out forwards, fadeOut 1.5s 1.5s forwards;
+        }
+
+        /* Animação de fade-in e slide-up */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animação de fade-out para desaparecer o título e subtítulo */
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Estilo do "Click here" */
+        .click-text {
+            font-size: 45px; /* Aumentando o tamanho do texto "Click here" */
+            color: white; /* Cor branca */
+            font-weight: 700;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 8px;
+            opacity: 0; /* Começa invisível */
+            transform: scale(0.5); /* Começa pequeno */
+            animation: fadeInScaleUp 1s 3s forwards; /* Animação após o título e subtítulo */
+        }
+
+        /* Animação de fade-in e scale-up para "Click here" */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Removendo o efeito de hover (quadrado branco) */
+        .click-text:hover {
+            background-color: transparent; /* Não altera o fundo no hover */
+        }
+
+        /* Estilo da mensagem com animação */
+        .message {
+            margin-top: 30px;
+            font-size: 45px; /* Aumentando o tamanho da fonte das frases */
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        /* Animação de slide-up para a frase */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animação de fade-out para desaparecer a frase */
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Animação de fade-in e scale-up para "Click here again" */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animação do "Click here again" */
+        .click-text-again {
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeInScaleUp 0.5s ease-out forwards;
+        }
+
+        /* Efeito de hover do "Click here again" */
+        .click-text-again:hover {
+            background-color: transparent; /* Não altera o fundo no hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Título e subtítulo com animação -->
+    <div class="title">Phrase of the day</div>
+    <div class="subtitle">everyday a new phrase</div>
+
+    <div class="click-text" id="clickText" onclick="showMessage()">
+        Click here
+    </div>
+
+    <div id="messages">
+        <!-- As frases motivacionais vão aparecer aqui -->
+    </div>
+    
+    <div class="footer">
+        <p>Created by <a href="https://www.seulink.com" target="_blank"; text-decoration: none;">Victor</a></p>
+    </div>
+    <script>
+        const messages = [
+            "Never",
+            "Give",
+            "Up",
+            "Jesus",
+            "Is",
+            "With",
+            "you",
+            "😊"  // Adicionando o emoji sorrindo na última frase
+        ];
+
+        let messageIndex = 0;
+
+        function showMessage() {
+            // Esconde o "Click here" após o clique
+            document.getElementById('clickText').style.display = 'none';
+
+            // Exibe uma frase motivacional após o clique
+            if (messageIndex < messages.length) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.textContent = messages[messageIndex];
+
+                // Exibe a nova mensagem com animação de entrada
+                document.getElementById('messages').appendChild(messageDiv);
+                
+                // Incrementa o índice para a próxima frase
+                messageIndex++;
+
+                // Após 2 segundos, anima a frase para desaparecer e exibe "Click here again"
+                setTimeout(() => {
+                    // Anima a frase desaparecer com fadeOut
+                    messageDiv.style.animation = 'fadeOut 1s ease-in forwards'; // Anima a frase desaparecer para cima
+
+                    // Após a animação de fadeOut (1 segundo), limpa as mensagens e mostra "Click here again"
+                    setTimeout(() => {
+                        document.getElementById('messages').innerHTML = ''; // Limpa as mensagens
+                        if (messageIndex < messages.length) {
+                            showMessage(); // Continua exibindo novas frases
+                        } else {
+                            const clickAgainText = document.createElement('div');
+                            clickAgainText.classList.add('click-text-again');
+                            clickAgainText.textContent = 'Click here';
+                            clickAgainText.onclick = () => {
+                                // Reseta o índice das mensagens
+                                messageIndex = 0;
+                                // Esconde o "Click here again" ao clicar
+                                clickAgainText.style.display = 'none';
+                                showMessage(); // Reinicia o ciclo de frases
+                            };
+                            document.body.appendChild(clickAgainText); // Exibe o "Click here again"
+                        }
+                    }, 1000); // Espera o tempo da animação de fadeOut (1 segundo)
+                }, 1000); // 2 segundos para mostrar a frase
+            }
+        }
+    </script>
+</body>
+</html>
